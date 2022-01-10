@@ -11,19 +11,46 @@ var app = new Vue({
       emails: []
     },
     created () {
-        for (let i = 0; i < 10; i++) {
-            axios
-            .get("https://flynn.boolean.careers/exercises/api/random/mail")
-            .then((response) => {
-              console.log(response.data.response);
-              this.emailUser = response.data.response;
-              this.emails.push(this.emailUser);
-              console.log(this.emails)
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
+        // console.log(this.emails.length);
+        // while (this.emails.length < 9) {
+        //     axios
+        //     .get("https://flynn.boolean.careers/exercises/api/random/int")
+        //     .then((response) => {
+        //         if (this.emails.includes(response.data.response) ) {
+        //             console.log("incluso")
+        //         }else {  
+        //             this.emailUser = response.data.response;
+        //              this.emails.push(this.emailUser);
+        //              console.log(this.emails)
+        //              console.log(this.emails.length);
+        //         }
+              
+        //     })
+        //     .catch((error) => {
+        //       console.log(error);
+        //     });
+        // }
+        
+        console.log(this.emails.length);
+        
+    for (let i = 0; i < 10; i++) {
+             axios
+             .get("https://flynn.boolean.careers/exercises/api/random/mail")
+             .then((response) => {
+                 if (this.emails.includes(response.data.response)) {
+                     console.log("incluso")
+                }else{
+                 console.log();
+                     this.emailUser = response.data.response;
+                     this.emails.push(this.emailUser);
+                     console.log(this.emails)
+                     console.log(this.emails.length);
+                 }
+             })
+             .catch((error) => {
+               console.log(error);
+             });
+         }
 
-    }
+     }
   })
