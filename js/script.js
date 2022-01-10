@@ -7,18 +7,23 @@
 var app = new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!'
+      emailUser: null,
+      emails: []
     },
     created () {
-        axios
-      .get("https://flynn.boolean.careers/exercises/api/random/mail")
-      .then((response) => {
-        console.log(response.data.response);
-        
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        for (let i = 0; i < 10; i++) {
+            axios
+            .get("https://flynn.boolean.careers/exercises/api/random/mail")
+            .then((response) => {
+              console.log(response.data.response);
+              this.emailUser = response.data.response;
+              this.emails.push(this.emailUser);
+              console.log(this.emails)
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
 
     }
   })
